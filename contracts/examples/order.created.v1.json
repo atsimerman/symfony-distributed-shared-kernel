@@ -1,0 +1,19 @@
+{
+    "eventId": "b3f6a1c2-9e3d-4f2a-8b1a-1e2d3c4b5a69",
+    "eventType": "order.created",
+    "schemaVersion": 1,
+    "occurredAt": "2026-06-12T19:00:00+00:00",
+    "correlationId": "f1e2d3c4-b5a6-4798-9c0d-1a2b3c4d5e6f",
+    "payload": {
+        "orderId": "0f1e2d3c-4b5a-4798-9c0d-1a2b3c4d5e6f",
+        "lineItems": [
+            {
+                "productId": "1a2b3c4d-5e6f-4798-9c0d-0f1e2d3c4b5a",
+                "quantity": 2,
+                "unitPrice": { "amount": 1999, "currency": "EUR" },
+                "lineTotal": { "amount": 3998, "currency": "EUR" }
+            }
+        ],
+        "total": { "amount": 3998, "currency": "EUR" }
+    }
+}

@@ -1,0 +1,54 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://lab.local/contracts/events/order.created.v1.json",
+    "title": "OrderCreatedPayload",
+    "description": "Payload of the order.created event (routing key order.created), wrapped in envelope.v1.json. Published by Ordering when an order is placed; consumed by Inventory (reserve stock) and Payment (record pending payment).",
+    "type": "object",
+    "required": ["orderId", "lineItems", "total"],
+    "additionalProperties": false,
+    "$defs": {
+        "money": {
+            "type": "object",
+            "required": ["amount", "currency"],
+            "additionalProperties": false,
+            "properties": {
+                "amount": {
+                    "type": "integer",
+                    "description": "Minor units (e.g. cents)"
+                },
+                "currency": {
+                    "type": "string",
+                    "pattern": "^[A-Z]{3}$"
+                }
+            }
+        }
+    },
+    "properties": {
+        "orderId": {
+            "type": "string",
+            "format": "uuid"
+        },
+        "lineItems": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "type": "object",
+                "required": ["productId", "quantity", "unitPrice", "lineTotal"],
+                "additionalProperties": false,
+                "properties": {
+                    "productId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "quantity": {
+                        "type": "integer",
+                        "minimum": 1
+                    },
+                    "unitPrice": { "$ref": "#/$defs/money" },
+                    "lineTotal": { "$ref": "#/$defs/money" }
+                }
+            }
+        },
+        "total": { "$ref": "#/$defs/money" }
+    }
+}
