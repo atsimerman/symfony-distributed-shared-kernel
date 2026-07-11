@@ -1,0 +1,38 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://lab.local/contracts/events/envelope.v1.json",
+    "title": "EventEnvelope",
+    "description": "The envelope wrapping every message on the domain_events exchange (PLAN.md §2). Payload schemas live in per-event files: contracts/events/<routing-key>.v<N>.json.",
+    "type": "object",
+    "required": ["eventId", "eventType", "schemaVersion", "occurredAt", "correlationId", "payload"],
+    "additionalProperties": false,
+    "properties": {
+        "eventId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Unique per event — the idempotency key consumers record in processed_messages"
+        },
+        "eventType": {
+            "type": "string",
+            "pattern": "^[a-z_]+\\.[a-z_]+$",
+            "description": "Routing key on the domain_events topic exchange, e.g. order.created"
+        },
+        "schemaVersion": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Version of the payload schema for this eventType"
+        },
+        "occurredAt": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "correlationId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Set at saga origin (order placement), copied verbatim by every consumer that publishes in reaction"
+        },
+        "payload": {
+            "type": "object"
+        }
+    }
+}
