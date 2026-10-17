@@ -22,6 +22,7 @@ Versioning follows Composer's `^0.N` boundary while the version is `0.x`:
 | Change | Bump |
 |---|---|
 | New event schema, new example fixture, new optional schema field, tests, docs | patch (`0.1.0 → 0.1.1`) |
+| Formatting or dev tooling only, no change to shipped behaviour | patch (`0.2.0 → 0.2.1`) |
 | Removing or renaming anything public, tightening a value-object invariant | minor (`0.1.x → 0.2.0`) — every consumer must change its constraint |
 
 Release steps:
@@ -33,11 +34,13 @@ Release steps:
 
 The versioning decision is recorded as ADR 0006 in the `symfony-distributed-infrastructure` repository.
 
-## Running tests
+## Running tests and quality checks
 
 ```bash
 composer install
-vendor/bin/phpunit
+composer qa        # rector (dry-run), php-cs-fixer (dry-run), phpstan (level 10), phpunit
 ```
+
+Individual steps: `composer test`, `composer stan`, `composer cs:check`, `composer rector:check`. The `:fix` variants apply changes. CI runs `composer qa` on PHP 8.4, the minimum supported version.
 
 Requires PHP 8.4 or newer.
