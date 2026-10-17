@@ -7,8 +7,15 @@
         "php": ">=8.4"
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.95",
         "opis/json-schema": "^2",
-        "phpunit/phpunit": "^13.2"
+        "phpstan/extension-installer": "^1.4",
+        "phpstan/phpstan": "^2.3",
+        "phpstan/phpstan-deprecation-rules": "^2.0",
+        "phpstan/phpstan-phpunit": "^2.1",
+        "phpstan/phpstan-strict-rules": "^2.1",
+        "phpunit/phpunit": "^13.2",
+        "rector/rector": "^2.7"
     },
     "autoload": {
         "psr-4": {
@@ -21,6 +28,18 @@
         }
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        }
+    },
+    "scripts": {
+        "rector:check": "rector process --dry-run",
+        "rector:fix": "rector process",
+        "cs:check": "php-cs-fixer fix --dry-run --diff",
+        "cs:fix": "php-cs-fixer fix",
+        "stan": "phpstan analyse --memory-limit=512M",
+        "test": "phpunit",
+        "qa": ["@rector:check", "@cs:check", "@stan", "@test"]
     }
 }
