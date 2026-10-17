@@ -6,7 +6,6 @@ Shared kernel for the Symfony Distributed Lab services: aggregate identities, un
 
 - `src/Identity/` — `OrderId`, `ProductId`, `ReservationId`, `PaymentId` (UUID wrappers)
 - `src/Money.php`, `src/Quantity.php` — value objects
-- `src/AggregateRoot.php`, `src/DomainEvent.php` — marker interfaces (removed in 0.2.0)
 - `contracts/events/` — JSON Schemas for the event envelope and each event payload
 - `contracts/examples/` — canonical example messages, validated against the schemas in CI
 

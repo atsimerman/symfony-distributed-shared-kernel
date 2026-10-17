@@ -1,6 +1,6 @@
 {
     "name": "atsimerman/symfony-distributed-shared-kernel",
-    "description": "Shared kernel: aggregate identities, universal value types, marker interfaces, and event contracts. No framework dependencies, no domain logic, no statuses.",
+    "description": "Shared kernel: aggregate identities, universal value types, and event contracts. No framework dependencies, no domain logic, no statuses.",
     "type": "library",
     "license": "proprietary",
     "require": {

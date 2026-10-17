@@ -2,6 +2,12 @@
 
 Versioning: while 0.x, a breaking change bumps the minor digit and an additive change bumps the patch digit (Composer's `^0.N` boundary). See README.
 
+## 0.2.0
+
+**Breaking.**
+
+- Removed marker interfaces `SharedKernel\AggregateRoot` and `SharedKernel\DomainEvent`. They never cross a context boundary; each service defines its own (e.g. order-service's `App\Domain\Shared\*`). Upgrade: replace the imports, then require `^0.2`.
+
 ## 0.1.0
 
 First tagged release.
