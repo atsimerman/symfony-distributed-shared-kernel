@@ -12,9 +12,7 @@ namespace SharedKernel\Identity;
  */
 abstract readonly class AggregateId implements \Stringable
 {
-    final private function __construct(public string $value)
-    {
-    }
+    final private function __construct(public string $value) {}
 
     final public static function fromString(string $value): static
     {

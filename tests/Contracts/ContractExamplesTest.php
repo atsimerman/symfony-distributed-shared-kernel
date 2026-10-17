@@ -18,14 +18,15 @@ use PHPUnit\Framework\TestCase;
  */
 final class ContractExamplesTest extends TestCase
 {
-    private const CONTRACTS_DIR = __DIR__.'/../../contracts';
+    private const string CONTRACTS_DIR = __DIR__ . '/../../contracts';
 
     /**
      * @return iterable<string, array{string}>
      */
     public static function examples(): iterable
     {
-        foreach (glob(self::CONTRACTS_DIR.'/examples/*.json') ?: [] as $path) {
+        $paths = glob(self::CONTRACTS_DIR . '/examples/*.json');
+        foreach ($paths === false ? [] : $paths as $path) {
             yield basename($path) => [$path];
         }
     }
@@ -34,51 +35,60 @@ final class ContractExamplesTest extends TestCase
     public function testExampleMatchesEnvelopeAndPayloadSchema(string $examplePath): void
     {
         $fileName = basename($examplePath);
-        $schemaPath = self::CONTRACTS_DIR.'/events/'.$fileName;
+        $schemaPath = self::CONTRACTS_DIR . '/events/' . $fileName;
         self::assertFileExists($schemaPath, sprintf('No payload schema for example %s', $fileName));
 
-        $example = self::decode($examplePath);
+        $example = $this->decode($examplePath);
+        self::assertIsString($example->eventType);
+        self::assertIsInt($example->schemaVersion);
         self::assertSame(
             $fileName,
             sprintf('%s.v%d.json', $example->eventType, $example->schemaVersion),
             'Example file name must be <eventType>.v<schemaVersion>.json',
         );
+        self::assertIsObject($example->payload);
 
         $validator = new Validator();
 
-        $envelope = $validator->validate($example, self::decode(self::CONTRACTS_DIR.'/events/envelope.v1.json'));
-        self::assertTrue($envelope->isValid(), self::describe($envelope->error()));
+        $envelope = $validator->validate($example, $this->decode(self::CONTRACTS_DIR . '/events/envelope.v1.json'));
+        self::assertTrue($envelope->isValid(), $this->describe($envelope->error()));
 
-        $payload = $validator->validate($example->payload, self::decode($schemaPath));
-        self::assertTrue($payload->isValid(), self::describe($payload->error()));
+        $payload = $validator->validate($example->payload, $this->decode($schemaPath));
+        self::assertTrue($payload->isValid(), $this->describe($payload->error()));
     }
 
     public function testEveryPayloadSchemaHasAnExample(): void
     {
-        foreach (glob(self::CONTRACTS_DIR.'/events/*.json') ?: [] as $schemaPath) {
+        $schemaPaths = glob(self::CONTRACTS_DIR . '/events/*.json');
+        foreach ($schemaPaths === false ? [] : $schemaPaths as $schemaPath) {
             $fileName = basename($schemaPath);
             if (str_starts_with($fileName, 'envelope.')) {
                 continue;
             }
 
             self::assertFileExists(
-                self::CONTRACTS_DIR.'/examples/'.$fileName,
+                self::CONTRACTS_DIR . '/examples/' . $fileName,
                 sprintf('Schema %s has no example fixture', $fileName),
             );
         }
     }
 
-    private static function decode(string $path): mixed
+    private function decode(string $path): \stdClass
     {
-        return json_decode((string) file_get_contents($path), false, flags: \JSON_THROW_ON_ERROR);
+        $decoded = json_decode((string) file_get_contents($path), false, flags: \JSON_THROW_ON_ERROR);
+        if (!$decoded instanceof \stdClass) {
+            throw new \UnexpectedValueException(sprintf('%s must contain a JSON object', $path));
+        }
+
+        return $decoded;
     }
 
-    private static function describe(?ValidationError $error): string
+    private function describe(?ValidationError $error): string
     {
-        if (null === $error) {
+        if (!$error instanceof \Opis\JsonSchema\Errors\ValidationError) {
             return '';
         }
 
-        return (string) json_encode((new ErrorFormatter())->format($error), \JSON_PRETTY_PRINT);
+        return (string) json_encode(new ErrorFormatter()->format($error), \JSON_PRETTY_PRINT);
     }
 }

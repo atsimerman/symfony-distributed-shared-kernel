@@ -11,9 +11,7 @@ namespace SharedKernel\Identity;
  */
 final class Uuid
 {
-    private function __construct()
-    {
-    }
+    private function __construct() {}
 
     public static function v4(): string
     {

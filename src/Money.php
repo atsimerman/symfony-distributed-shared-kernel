@@ -16,8 +16,7 @@ final readonly class Money
     private function __construct(
         public int $amount,
         public string $currency,
-    ) {
-    }
+    ) {}
 
     public static function fromMinor(int $amount, string $currency): self
     {

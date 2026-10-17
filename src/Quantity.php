@@ -14,9 +14,7 @@ namespace SharedKernel;
  */
 final readonly class Quantity
 {
-    private function __construct(public int $value)
-    {
-    }
+    private function __construct(public int $value) {}
 
     public static function fromInt(int $value): self
     {

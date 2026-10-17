@@ -4,6 +4,4 @@ declare(strict_types=1);
 
 namespace SharedKernel\Identity;
 
-final readonly class ProductId extends AggregateId
-{
-}
+final readonly class ProductId extends AggregateId {}

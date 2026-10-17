@@ -6,7 +6,7 @@ $finder = PhpCsFixer\Finder::create()
     ->in([__DIR__ . '/src', __DIR__ . '/tests'])
     ->append([__FILE__, __DIR__ . '/rector.php']);
 
-return (new PhpCsFixer\Config())
+return new PhpCsFixer\Config()
     ->setRiskyAllowed(true)
     ->setCacheFile(__DIR__ . '/.php-cs-fixer.cache')
     ->setRules([
