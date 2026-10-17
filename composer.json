@@ -6,9 +6,18 @@
     "require": {
         "php": ">=8.4"
     },
+    "require-dev": {
+        "opis/json-schema": "^2",
+        "phpunit/phpunit": "^13.2"
+    },
     "autoload": {
         "psr-4": {
             "SharedKernel\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SharedKernel\\Tests\\": "tests/"
         }
     },
     "config": {

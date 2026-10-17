@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace SharedKernel;
 
 /**
- * A strictly positive quantity — line items and stock both speak in quantities.
+ * A strictly positive amount of a product — on an order line item or a
+ * reservation line.
  *
- * Zero is deliberately not representable: "no stock" is a Stock-context state
- * (available = absent or a context-local rule), not a Quantity value.
+ * NOT a stock level: stock can be zero and is decremented, so Inventory owns
+ * its own StockLevel value object (PLAN.md §3–4). Zero is deliberately not
+ * representable here.
  */
 final readonly class Quantity
 {
