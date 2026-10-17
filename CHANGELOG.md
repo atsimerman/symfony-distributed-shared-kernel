@@ -2,6 +2,14 @@
 
 Versioning: while 0.x, a breaking change bumps the minor digit and an additive change bumps the patch digit (Composer's `^0.N` boundary). See README.
 
+## 0.2.1
+
+No change to behaviour or public signatures; services can stay on `^0.2`.
+
+- Quality harness: PHPStan level 10 (no baseline), Rector, PHP-CS-Fixer, and a `composer qa` script. CI runs it on PHP 8.4.
+- Formatting in `src/`: empty constructor bodies and empty classes on one line, typed class constants.
+- Contract test: fixtures decode to typed objects; a non-object fixture fails with a clear message.
+
 ## 0.2.0
 
 **Breaking.**
