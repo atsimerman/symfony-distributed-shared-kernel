@@ -1,0 +1,20 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://lab.local/contracts/events/inventory.stock_changed.v1.json",
+    "title": "InventoryStockChangedPayload",
+    "description": "Payload of the inventory.stock_changed event (routing key inventory.stock_changed), wrapped in envelope.v1.json. Published by Inventory whenever a product's available stock changes (reservation, release, restock); consumed by Ordering to maintain its availability projection.",
+    "type": "object",
+    "required": ["productId", "available"],
+    "additionalProperties": false,
+    "properties": {
+        "productId": {
+            "type": "string",
+            "format": "uuid"
+        },
+        "available": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Absolute stock level after the change (not a delta), so a replayed or reordered event cannot corrupt the projection beyond staleness"
+        }
+    }
+}

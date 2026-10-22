@@ -1,0 +1,11 @@
+{
+    "eventId": "c4a7b2d1-3e5f-4a6b-9c8d-2f1e0d9c8b7a",
+    "eventType": "inventory.reserved",
+    "schemaVersion": 1,
+    "occurredAt": "2026-06-12T19:00:02+00:00",
+    "correlationId": "f1e2d3c4-b5a6-4798-9c0d-1a2b3c4d5e6f",
+    "payload": {
+        "reservationId": "7d8e9f0a-1b2c-4d3e-8f4a-5b6c7d8e9f0a",
+        "orderId": "0f1e2d3c-4b5a-4798-9c0d-1a2b3c4d5e6f"
+    }
+}

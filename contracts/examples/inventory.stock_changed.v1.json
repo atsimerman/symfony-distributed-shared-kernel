@@ -1,0 +1,11 @@
+{
+    "eventId": "e6c9d4f3-5a7b-4c8d-9e0f-4b3a2f1e0d9c",
+    "eventType": "inventory.stock_changed",
+    "schemaVersion": 1,
+    "occurredAt": "2026-06-12T19:00:02+00:00",
+    "correlationId": "f1e2d3c4-b5a6-4798-9c0d-1a2b3c4d5e6f",
+    "payload": {
+        "productId": "1a2b3c4d-5e6f-4798-9c0d-0f1e2d3c4b5a",
+        "available": 8
+    }
+}

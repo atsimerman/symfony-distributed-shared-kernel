@@ -1,0 +1,20 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://lab.local/contracts/events/inventory.reservation_failed.v1.json",
+    "title": "InventoryReservationFailedPayload",
+    "description": "Payload of the inventory.reservation_failed event (routing key inventory.reservation_failed), wrapped in envelope.v1.json. Published by Inventory when an order could not be reserved in full (reservation is all-or-nothing); consumed by Ordering (cancels the order) and Payment (cancels the pending payment).",
+    "type": "object",
+    "required": ["orderId", "reason"],
+    "additionalProperties": false,
+    "properties": {
+        "orderId": {
+            "type": "string",
+            "format": "uuid"
+        },
+        "reason": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Human-readable cause, e.g. insufficient_stock. Informational only: consumers must not branch on it."
+        }
+    }
+}

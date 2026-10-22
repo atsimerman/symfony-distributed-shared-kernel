@@ -1,0 +1,19 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://lab.local/contracts/events/inventory.reserved.v1.json",
+    "title": "InventoryReservedPayload",
+    "description": "Payload of the inventory.reserved event (routing key inventory.reserved), wrapped in envelope.v1.json. Published by Inventory when stock was held for every line item of an order; consumed by Payment (triggers settlement) and Ordering (saga).",
+    "type": "object",
+    "required": ["reservationId", "orderId"],
+    "additionalProperties": false,
+    "properties": {
+        "reservationId": {
+            "type": "string",
+            "format": "uuid"
+        },
+        "orderId": {
+            "type": "string",
+            "format": "uuid"
+        }
+    }
+}
