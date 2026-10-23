@@ -1,0 +1,24 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://lab.local/contracts/events/payment.failed.v1.json",
+    "title": "PaymentFailedPayload",
+    "description": "Payload of the payment.failed event (routing key payment.failed), wrapped in envelope.v1.json. Published by Payment when the simulated provider declined an order's payment; consumed by Ordering (saga: cancels the order) and Inventory (compensation: releases the reservation).",
+    "type": "object",
+    "required": ["paymentId", "orderId", "reason"],
+    "additionalProperties": false,
+    "properties": {
+        "paymentId": {
+            "type": "string",
+            "format": "uuid"
+        },
+        "orderId": {
+            "type": "string",
+            "format": "uuid"
+        },
+        "reason": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Human-readable cause, e.g. provider_declined. Informational only: consumers must not branch on it."
+        }
+    }
+}

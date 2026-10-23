@@ -2,6 +2,12 @@
 
 Versioning: while 0.x, a breaking change bumps the minor digit and an additive change bumps the patch digit (Composer's `^0.N` boundary). See README.
 
+## 0.2.3
+
+Additive only; services can stay on `^0.2`.
+
+- Contracts: payload schemas + example fixtures for the Phase 3 saga (v1): `payment.completed`, `payment.failed`, `inventory.reservation_released`, `order.completed`, `order.cancelled` (`reason` is the closed enum `stock_unavailable` | `payment_failed`).
+
 ## 0.2.2
 
 Additive only; services can stay on `^0.2`.

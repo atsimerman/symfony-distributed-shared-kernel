@@ -1,0 +1,11 @@
+{
+    "eventId": "d4e5f6a7-b8c9-4d0e-9f1a-3b4c5d6e7f8a",
+    "eventType": "order.cancelled",
+    "schemaVersion": 1,
+    "occurredAt": "2026-06-12T19:00:04+00:00",
+    "correlationId": "f1e2d3c4-b5a6-4798-9c0d-1a2b3c4d5e6f",
+    "payload": {
+        "orderId": "0f1e2d3c-4b5a-4798-9c0d-1a2b3c4d5e6f",
+        "reason": "payment_failed"
+    }
+}

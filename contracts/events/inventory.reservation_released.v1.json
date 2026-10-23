@@ -1,0 +1,19 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://lab.local/contracts/events/inventory.reservation_released.v1.json",
+    "title": "InventoryReservationReleasedPayload",
+    "description": "Payload of the inventory.reservation_released event (routing key inventory.reservation_released), wrapped in envelope.v1.json. Published by Inventory when it released a reservation and returned its stock (the compensating transaction for payment.failed). An audit fact: no context consumes it.",
+    "type": "object",
+    "required": ["reservationId", "orderId"],
+    "additionalProperties": false,
+    "properties": {
+        "reservationId": {
+            "type": "string",
+            "format": "uuid"
+        },
+        "orderId": {
+            "type": "string",
+            "format": "uuid"
+        }
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://lab.local/contracts/events/order.completed.v1.json",
+    "title": "OrderCompletedPayload",
+    "description": "Payload of the order.completed event (routing key order.completed), wrapped in envelope.v1.json. Published by Ordering when the saga ended with the payment settled. A fact for observers and read models: no context consumes it yet.",
+    "type": "object",
+    "required": ["orderId"],
+    "additionalProperties": false,
+    "properties": {
+        "orderId": {
+            "type": "string",
+            "format": "uuid"
+        }
+    }
+}

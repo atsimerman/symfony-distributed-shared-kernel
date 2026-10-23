@@ -1,0 +1,12 @@
+{
+    "eventId": "a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d",
+    "eventType": "payment.completed",
+    "schemaVersion": 1,
+    "occurredAt": "2026-06-12T19:00:03+00:00",
+    "correlationId": "f1e2d3c4-b5a6-4798-9c0d-1a2b3c4d5e6f",
+    "payload": {
+        "paymentId": "3c4d5e6f-7a8b-4c9d-8e0f-1a2b3c4d5e6f",
+        "orderId": "0f1e2d3c-4b5a-4798-9c0d-1a2b3c4d5e6f",
+        "amount": { "amount": 3998, "currency": "EUR" }
+    }
+}

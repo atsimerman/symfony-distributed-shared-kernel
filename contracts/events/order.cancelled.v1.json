@@ -1,0 +1,20 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://lab.local/contracts/events/order.cancelled.v1.json",
+    "title": "OrderCancelledPayload",
+    "description": "Payload of the order.cancelled event (routing key order.cancelled), wrapped in envelope.v1.json. Published by Ordering when the saga ended without a settled payment. A fact for observers and read models: no context consumes it yet.",
+    "type": "object",
+    "required": ["orderId", "reason"],
+    "additionalProperties": false,
+    "properties": {
+        "orderId": {
+            "type": "string",
+            "format": "uuid"
+        },
+        "reason": {
+            "type": "string",
+            "enum": ["stock_unavailable", "payment_failed"],
+            "description": "Which saga step ended the order: stock_unavailable after inventory.reservation_failed, payment_failed after payment.failed. Adding a value is a breaking change (new schema version)."
+        }
+    }
+}

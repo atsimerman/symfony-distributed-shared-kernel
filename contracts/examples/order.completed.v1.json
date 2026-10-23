@@ -1,0 +1,10 @@
+{
+    "eventId": "c3d4e5f6-a7b8-4c9d-8e0f-2a3b4c5d6e7f",
+    "eventType": "order.completed",
+    "schemaVersion": 1,
+    "occurredAt": "2026-06-12T19:00:04+00:00",
+    "correlationId": "f1e2d3c4-b5a6-4798-9c0d-1a2b3c4d5e6f",
+    "payload": {
+        "orderId": "0f1e2d3c-4b5a-4798-9c0d-1a2b3c4d5e6f"
+    }
+}
