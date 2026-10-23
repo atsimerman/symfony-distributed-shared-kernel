@@ -1,0 +1,14 @@
+{
+    "eventId": "e8a1b2c3-d4e5-4f60-8a7b-9c0d1e2f3a4b",
+    "eventType": "product.created",
+    "schemaVersion": 1,
+    "occurredAt": "2026-06-12T18:00:00+00:00",
+    "correlationId": "a7b8c9d0-e1f2-4a3b-8c4d-5e6f7a8b9c0d",
+    "payload": {
+        "productId": "1a2b3c4d-5e6f-4798-9c0d-0f1e2d3c4b5a",
+        "name": "Wireless Mouse",
+        "price": { "amount": 1999, "currency": "EUR" },
+        "taxRate": 2000,
+        "version": 1
+    }
+}

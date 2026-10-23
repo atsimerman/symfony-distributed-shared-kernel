@@ -2,6 +2,12 @@
 
 Versioning: while 0.x, a breaking change bumps the minor digit and an additive change bumps the patch digit (Composer's `^0.N` boundary). See README.
 
+## 0.2.4
+
+Additive only; services can stay on `^0.2`.
+
+- Contracts: payload schemas + example fixtures for `product.created` and `product.updated` (v1): full product state (`productId`, `name`, `price`, `taxRate` in basis points, 0–10000) plus a per-product `version` (1 on creation, +1 per change) so consumers can ignore reordered or replayed older states.
+
 ## 0.2.3
 
 Additive only; services can stay on `^0.2`.

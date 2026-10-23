@@ -1,0 +1,50 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://lab.local/contracts/events/product.updated.v1.json",
+    "title": "ProductUpdatedPayload",
+    "description": "Payload of the product.updated event (routing key product.updated), wrapped in envelope.v1.json. Published by Catalog when a product changes, and by catalog:republish to rebuild projections; carries the full product state after the change, never a delta. Consumed by Ordering (catalog projection).",
+    "type": "object",
+    "required": ["productId", "name", "price", "taxRate", "version"],
+    "additionalProperties": false,
+    "$defs": {
+        "money": {
+            "type": "object",
+            "required": ["amount", "currency"],
+            "additionalProperties": false,
+            "properties": {
+                "amount": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "Minor units (e.g. cents)"
+                },
+                "currency": {
+                    "type": "string",
+                    "pattern": "^[A-Z]{3}$"
+                }
+            }
+        }
+    },
+    "properties": {
+        "productId": {
+            "type": "string",
+            "format": "uuid"
+        },
+        "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+        },
+        "price": { "$ref": "#/$defs/money" },
+        "taxRate": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000,
+            "description": "Basis points: 2000 means 20.00%"
+        },
+        "version": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Per product: 1 on creation, +1 on every change. A consumer keeps the highest version it has applied and ignores anything older, so a reordered or replayed event cannot roll its copy back; an equal version may be applied again (republish)."
+        }
+    }
+}
